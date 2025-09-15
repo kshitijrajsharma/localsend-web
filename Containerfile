@@ -11,11 +11,8 @@ RUN corepack enable pnpm && \
 FROM caddy:alpine
 COPY --from=builder /data/.output/public /usr/share/caddy
 COPY <<"EOT" /etc/caddy/Caddyfile
-https:// {
+:80 {
     file_server
     root * /usr/share/caddy
-    tls internal {
-	    on_demand
-    }
 }
 EOT
